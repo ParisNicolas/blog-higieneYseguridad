@@ -1,19 +1,26 @@
-#mysql+pymysql://root:@localhost/reportes_db
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
-import os
 from datetime import datetime
 from functools import wraps
+import os
+from dotenv import load_dotenv
+import logging
+from flask_migrate import Migrate
+import uuid
+import boto3
+import openai
+
+# Cargar variables de entorno desde .env
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "super_secret_key"  # Cambiar en producción
-
-# Base de datos MySQL
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@localhost/reportes_db"
-app.config["UPLOAD_FOLDER"] = os.path.join("static", "uploads")
+app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
+app.config["UPLOAD_FOLDER"] = os.getenv("UPLOAD_FOLDER", os.path.join("static", "uploads"))
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 
 # ---------- MODELOS ----------
 class User(db.Model):
@@ -27,7 +34,9 @@ class Post(db.Model):
     title = db.Column(db.String(200))
     image_path = db.Column(db.String(300))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    username = db.Column(db.String(50))  # Nuevo campo
+    username = db.Column(db.String(50))
+    descripcion = db.Column(db.Text)  # Nuevo campo
+    score = db.Column(db.Integer, default=2)  # Nuevo campo, inicia en 2
     likes = db.relationship("Like", backref="post", lazy=True)
     comments = db.relationship("Comment", backref="post", lazy=True)
 
@@ -51,12 +60,86 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+# Configuración de entorno y S3
+env = os.getenv("FLASK_ENV", "development")
+S3_BUCKET = os.getenv("S3_BUCKET")
+S3_REGION = os.getenv("S3_REGION")
+S3_ACCESS_KEY = os.getenv("S3_ACCESS_KEY")
+S3_SECRET_KEY = os.getenv("S3_SECRET_KEY")
+
+def save_image(file):
+    ext = os.path.splitext(file.filename)[1]
+    unique_filename = f"{uuid.uuid4().hex}{ext}"
+    if env == "development":
+        # Guardar localmente
+        full_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
+        file.save(full_path)
+        return os.path.join("uploads", unique_filename)
+    else:
+        # Guardar en S3
+        s3 = boto3.client(
+            "s3",
+            region_name=S3_REGION,
+            aws_access_key_id=S3_ACCESS_KEY,
+            aws_secret_access_key=S3_SECRET_KEY
+        )
+        s3.upload_fileobj(
+            file,
+            S3_BUCKET,
+            unique_filename,
+            ExtraArgs={"ACL": "public-read", "ContentType": file.content_type}
+        )
+        # URL pública de la imagen en S3
+        return f"https://{S3_BUCKET}.s3.{S3_REGION}.amazonaws.com/{unique_filename}"
+
+
+def analizar_riesgo_titulo(titulo):
+    """
+    Usa la API de OpenAI (gpt-4o-mini) para analizar el título y devolver un puntaje de riesgo (0-5) y una justificación breve.
+    """
+    api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = api_key
+    prompt = (
+        f"Analiza el siguiente título de reporte de seguridad y devuelve:\n"
+        f"1. Un puntaje de riesgo del 0 al 5 (donde 0 es sin riesgo y 5 es riesgo máximo).\n"
+        f"2. Una justificación breve (máx 30 palabras).\n"
+        f"Título: \"{titulo}\"\n"
+        f"Formato de respuesta: Puntaje: <número>, Justificación: <texto breve>"
+    )
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Eres un experto en seguridad e higiene laboral."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=150,
+            temperature=0.2
+        )
+        output = response.choices[0].message.content
+        import re
+        match = re.search(r"Puntaje:\s*(\d),\s*Justificación:\s*(.*)", output)
+        if match:
+            score = int(match.group(1))
+            justificacion = match.group(2)[:200]
+        else:
+            score = 2
+            justificacion = "No se pudo analizar el riesgo automáticamente."
+    except openai.AuthenticationError:
+        score = 2
+        justificacion = "Error: API Key inválida o falta autorización para usar la API de OpenAI."
+    except Exception as e:
+        score = 2
+        justificacion = f"Error en análisis automático: {str(e)}"
+    return score, justificacion
+
 # ---------- RUTAS ----------
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     posts = Post.query.all()
-    posts = sorted(posts, key=lambda p: len(p.likes), reverse=True)
+    # Ordenar primero por score (desc), luego por cantidad de likes (desc)
+    posts = sorted(posts, key=lambda p: (-p.score, -len(p.likes)))
     logged_in_user = session.get("username")
     is_admin = session.get("is_admin", False)
     return render_template("index.html", posts=posts, logged_in_user=logged_in_user, is_admin=is_admin)
@@ -95,19 +178,21 @@ def nuevo_post():
         descripcion = request.form["descripcion"]
         file = request.files["file"]
 
-        # Guardar imagen
+        # Analizar el título para obtener puntaje y justificación
+        score, justificacion = analizar_riesgo_titulo(descripcion[:50])
+
+        # Guardar imagen según entorno
         image_path = None
         if file and file.filename != "":
-            filename = secure_filename(file.filename)
-            full_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            file.save(full_path)
-            image_path = os.path.join("uploads", filename)
+            image_path = save_image(file)
 
         # Crear nueva publicación con el nombre de usuario
         new_post = Post(
             title=descripcion[:50],
             image_path=image_path,
-            username=session["username"]  # Guardar el usuario
+            username=session["username"],
+            descripcion=justificacion,
+            score=score
         )
         db.session.add(new_post)
         db.session.commit()
@@ -129,6 +214,24 @@ def like_post(post_id):
         db.session.commit()
     return redirect(url_for("index"))
 
+@app.route("/like_ajax/<int:post_id>", methods=["POST"])
+@login_required
+def like_post_ajax(post_id):
+    if "username" not in session:
+        return jsonify({"success": False, "error": "No login"})
+    existing_like = Like.query.filter_by(post_id=post_id, username=session["username"]).first()
+    if not existing_like:
+        new_like = Like(post_id=post_id, username=session["username"])
+        db.session.add(new_like)
+        db.session.commit()
+        liked = True
+    else:
+        db.session.delete(existing_like)
+        db.session.commit()
+        liked = False
+    likes_count = Like.query.filter_by(post_id=post_id).count()
+    return jsonify({"success": True, "likes": likes_count, "liked": liked})
+
 @app.route("/comment/<int:post_id>", methods=["POST"])
 @login_required
 def comment_post(post_id):
@@ -144,9 +247,12 @@ def comment_post(post_id):
 @app.route("/delete/<int:post_id>", methods=["POST"])
 @login_required
 def delete_post(post_id):
-    if not session.get("is_admin"):
-        return redirect(url_for("index"))
     post = Post.query.get_or_404(post_id)
+    is_admin = session.get("is_admin")
+    username = session.get("username")
+    # Permite eliminar si es admin o el autor
+    if not (is_admin or post.username == username):
+        return redirect(url_for("index"))
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for("index"))
@@ -154,11 +260,33 @@ def delete_post(post_id):
 @app.route("/delete_comment/<int:comment_id>", methods=["POST"])
 @login_required
 def delete_comment(comment_id):
-    if not session.get("is_admin"):
-        return redirect(url_for("index"))
     comment = Comment.query.get_or_404(comment_id)
+    is_admin = session.get("is_admin")
+    username = session.get("username")
+    # Permite eliminar si es admin o el autor
+    if not (is_admin or comment.username == username):
+        return redirect(url_for("index"))
     db.session.delete(comment)
     db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/update_score/<int:post_id>", methods=["POST"])
+@login_required
+def update_score(post_id):
+    if not session.get("is_admin"):
+        flash("Solo el administrador puede modificar el puntaje.")
+        return redirect(url_for("index"))
+    post = Post.query.get_or_404(post_id)
+    try:
+        score = int(request.form.get("score", 5))
+        if 0 <= score <= 5:
+            post.score = score
+            db.session.commit()
+            flash("Puntaje actualizado.")
+        else:
+            flash("El puntaje debe estar entre 0 y 5.")
+    except Exception:
+        flash("Error al actualizar el puntaje.")
     return redirect(url_for("index"))
 
 @app.route("/logout")
@@ -179,7 +307,34 @@ def create_admin():
     db.session.commit()
     print(f"Administrador '{username}' creado exitosamente.")
 
+@app.cli.command("change-admin-password")
+def change_admin_password():
+    """Modifica la contraseña de un usuario administrador existente."""
+    username = input("Nombre de usuario del admin: ")
+    user = User.query.filter_by(username=username, is_admin=True).first()
+    if not user:
+        print("No existe un administrador con ese nombre de usuario.")
+        return
+    new_password = input("Nueva contraseña: ")
+    user.password_hash = generate_password_hash(new_password)
+    db.session.commit()
+    print(f"Contraseña actualizada para el administrador '{username}'.")
+
 if __name__ == "__main__":
+    # Configuración de logging
+    logging.basicConfig(
+        level=logging.INFO,  # Cambia a logging.ERROR en producción si prefieres menos información
+        format="%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s",
+        handlers=[
+            logging.FileHandler("app.log"),  # Guarda logs en app.log
+            logging.StreamHandler()          # Muestra logs en consola
+        ]
+    )
     with app.app_context():
         db.create_all()
-    app.run(host="0.0.0.0", port=5000)
+    env = os.getenv("FLASK_ENV", "development")
+    if env == "development":
+        app.run(host="0.0.0.0", port=5000, debug=True)
+    # En producción, gunicorn/nginx se encargan de ejecutar la app
+
+
