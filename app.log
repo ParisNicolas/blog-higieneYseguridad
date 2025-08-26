@@ -1468,3 +1468,148 @@
 2025-08-24 11:19:34,873 INFO werkzeug Thread-29 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 11:19:34] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
 2025-08-24 11:19:34,877 INFO werkzeug Thread-30 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 11:19:34] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
 2025-08-24 11:19:34,878 INFO werkzeug Thread-31 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 11:19:34] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:05,970 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.169:5000
+2025-08-24 13:09:05,970 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-08-24 13:09:05,971 INFO werkzeug MainThread :  * Restarting with stat
+2025-08-24 13:09:08,901 WARNING werkzeug MainThread :  * Debugger is active!
+2025-08-24 13:09:08,901 INFO werkzeug MainThread :  * Debugger PIN: 162-973-312
+2025-08-24 13:09:09,893 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:09] "GET / HTTP/1.1" 200 -
+2025-08-24 13:09:10,035 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,035 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "GET /static/uploads/perro.jpg HTTP/1.1" 200 -
+2025-08-24 13:09:10,036 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,036 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,039 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,041 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,042 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,043 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[36mGET /static/uploads/1f366da6d1ed431594310f1b1493bc02.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:10,446 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-24 13:09:18,370 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[32mPOST /delete/15 HTTP/1.1[0m" 302 -
+2025-08-24 13:09:18,383 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "GET / HTTP/1.1" 200 -
+2025-08-24 13:09:18,431 INFO werkzeug Thread-15 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,431 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,433 INFO werkzeug Thread-17 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,434 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,438 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,440 INFO werkzeug Thread-19 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:18,441 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:18] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:09:19,356 INFO werkzeug Thread-21 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:09:19] "GET /nuevo_post HTTP/1.1" 200 -
+2025-08-24 13:15:03,379 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[32mPOST /nuevo_post HTTP/1.1[0m" 302 -
+2025-08-24 13:15:03,466 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "GET / HTTP/1.1" 200 -
+2025-08-24 13:15:03,509 INFO werkzeug Thread-25 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "GET /static/uploads/4a93d636066c4edda8964b9638a9bdcf.jpg HTTP/1.1" 200 -
+2025-08-24 13:15:03,562 INFO werkzeug Thread-26 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,563 INFO werkzeug Thread-28 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,564 INFO werkzeug Thread-27 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,564 INFO werkzeug Thread-29 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,567 INFO werkzeug Thread-30 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,568 INFO werkzeug Thread-31 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,569 INFO werkzeug Thread-32 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:03,764 INFO werkzeug Thread-33 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-24 13:15:33,715 INFO werkzeug Thread-34 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[32mPOST /delete/16 HTTP/1.1[0m" 302 -
+2025-08-24 13:15:33,726 INFO werkzeug Thread-35 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "GET / HTTP/1.1" 200 -
+2025-08-24 13:15:33,775 INFO werkzeug Thread-36 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,779 INFO werkzeug Thread-37 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,781 INFO werkzeug Thread-39 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,782 INFO werkzeug Thread-38 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,783 INFO werkzeug Thread-40 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,784 INFO werkzeug Thread-41 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:33,785 INFO werkzeug Thread-42 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:33] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:34,750 INFO werkzeug Thread-43 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:34] "GET /nuevo_post HTTP/1.1" 200 -
+2025-08-24 13:15:54,185 INFO werkzeug Thread-44 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[32mPOST /nuevo_post HTTP/1.1[0m" 302 -
+2025-08-24 13:15:54,202 INFO werkzeug Thread-45 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "GET / HTTP/1.1" 200 -
+2025-08-24 13:15:54,252 INFO werkzeug Thread-46 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "GET /static/uploads/821eb31123c94027b4b72174d0c0683c.jpg HTTP/1.1" 200 -
+2025-08-24 13:15:54,265 INFO werkzeug Thread-47 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,265 INFO werkzeug Thread-48 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,267 INFO werkzeug Thread-49 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,269 INFO werkzeug Thread-50 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,271 INFO werkzeug Thread-51 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,275 INFO werkzeug Thread-52 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:15:54,276 INFO werkzeug Thread-53 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:15:54] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,273 INFO werkzeug Thread-54 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[32mPOST /delete/17 HTTP/1.1[0m" 302 -
+2025-08-24 13:16:13,286 INFO werkzeug Thread-55 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "GET / HTTP/1.1" 200 -
+2025-08-24 13:16:13,335 INFO werkzeug Thread-56 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,336 INFO werkzeug Thread-57 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,338 INFO werkzeug Thread-59 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,338 INFO werkzeug Thread-58 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,340 INFO werkzeug Thread-60 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,341 INFO werkzeug Thread-62 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:13,341 INFO werkzeug Thread-61 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:13] "GET /static/uploads/perro.jpg HTTP/1.1" 200 -
+2025-08-24 13:16:14,268 INFO werkzeug Thread-63 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:14] "GET /nuevo_post HTTP/1.1" 200 -
+2025-08-24 13:16:35,731 INFO werkzeug Thread-64 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[32mPOST /nuevo_post HTTP/1.1[0m" 302 -
+2025-08-24 13:16:35,810 INFO werkzeug Thread-65 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "GET / HTTP/1.1" 200 -
+2025-08-24 13:16:35,860 INFO werkzeug Thread-66 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "GET /static/uploads/c708e189aa7541c4a6d386e82c81a4ed.jpg HTTP/1.1" 200 -
+2025-08-24 13:16:35,865 INFO werkzeug Thread-67 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,866 INFO werkzeug Thread-68 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,867 INFO werkzeug Thread-69 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,869 INFO werkzeug Thread-70 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,870 INFO werkzeug Thread-71 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,872 INFO werkzeug Thread-73 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:35,872 INFO werkzeug Thread-72 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:35] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,677 INFO werkzeug Thread-74 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[32mPOST /delete/18 HTTP/1.1[0m" 302 -
+2025-08-24 13:16:46,690 INFO werkzeug Thread-75 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "GET / HTTP/1.1" 200 -
+2025-08-24 13:16:46,738 INFO werkzeug Thread-76 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,740 INFO werkzeug Thread-77 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,743 INFO werkzeug Thread-78 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,744 INFO werkzeug Thread-79 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,745 INFO werkzeug Thread-80 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,746 INFO werkzeug Thread-81 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:16:46,747 INFO werkzeug Thread-82 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:16:46] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:18,953 INFO werkzeug Thread-83 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:18] "GET /nuevo_post HTTP/1.1" 200 -
+2025-08-24 13:17:46,386 INFO werkzeug Thread-84 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[32mPOST /nuevo_post HTTP/1.1[0m" 302 -
+2025-08-24 13:17:46,406 INFO werkzeug Thread-85 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "GET / HTTP/1.1" 200 -
+2025-08-24 13:17:46,450 INFO werkzeug Thread-86 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "GET /static/uploads/a65fc1c55dd949a9b014ac9b0f943a63.png HTTP/1.1" 200 -
+2025-08-24 13:17:46,462 INFO werkzeug Thread-87 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,464 INFO werkzeug Thread-88 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,464 INFO werkzeug Thread-89 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,465 INFO werkzeug Thread-90 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,467 INFO werkzeug Thread-91 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,468 INFO werkzeug Thread-92 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:17:46,469 INFO werkzeug Thread-93 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:17:46] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:09,768 INFO werkzeug MainThread :  * Detected change in '/home/parisnicolas/Programacion/escuela/blog-higieneYseguridad/app.py', reloading
+2025-08-24 13:19:10,862 INFO werkzeug MainThread :  * Restarting with stat
+2025-08-24 13:19:14,325 WARNING werkzeug MainThread :  * Debugger is active!
+2025-08-24 13:19:14,325 INFO werkzeug MainThread :  * Debugger PIN: 162-973-312
+2025-08-24 13:19:14,761 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:14] "GET /nuevo_post HTTP/1.1" 200 -
+2025-08-24 13:19:30,171 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[32mPOST /nuevo_post HTTP/1.1[0m" 302 -
+2025-08-24 13:19:30,209 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "GET / HTTP/1.1" 200 -
+2025-08-24 13:19:30,260 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "GET /static/uploads/1d86240f41364ec6a83612ffff967e6b.jpg HTTP/1.1" 200 -
+2025-08-24 13:19:30,267 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,268 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,269 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,271 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,275 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,276 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,276 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/a65fc1c55dd949a9b014ac9b0f943a63.png HTTP/1.1[0m" 304 -
+2025-08-24 13:19:30,276 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [24/Aug/2025 13:19:30] "[36mGET /static/uploads/perro.jpg HTTP/1.1[0m" 304 -
+2025-08-24 13:20:10,929 INFO werkzeug MainThread :  * Detected change in '/home/parisnicolas/Programacion/escuela/blog-higieneYseguridad/app.py', reloading
+2025-08-24 13:20:11,646 INFO werkzeug MainThread :  * Restarting with stat
+2025-08-24 13:20:14,427 WARNING werkzeug MainThread :  * Debugger is active!
+2025-08-24 13:20:14,428 INFO werkzeug MainThread :  * Debugger PIN: 162-973-312
+2025-08-26 19:33:33,477 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.169:5000
+2025-08-26 19:33:33,485 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2025-08-26 19:33:33,486 INFO werkzeug MainThread :  * Restarting with stat
+2025-08-26 19:33:33,854 WARNING werkzeug MainThread :  * Debugger is active!
+2025-08-26 19:33:33,874 INFO werkzeug MainThread :  * Debugger PIN: 531-671-266
+2025-08-26 19:33:37,642 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:37] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-26 19:33:37,654 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:37] "GET /login HTTP/1.1" 200 -
+2025-08-26 19:33:37,786 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-26 19:33:41,797 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-26 19:33:41,832 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "GET / HTTP/1.1" 200 -
+2025-08-26 19:33:41,882 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "GET /static/uploads/perro.jpg HTTP/1.1" 200 -
+2025-08-26 19:33:41,882 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "GET /static/uploads/a65fc1c55dd949a9b014ac9b0f943a63.png HTTP/1.1" 200 -
+2025-08-26 19:33:41,883 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/Screen-Shot-2019-01-22-at-1.31.16-PM-1024x780.png HTTP/1.1[0m" 304 -
+2025-08-26 19:33:41,884 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/f79a956adfa94d9fb4b56495a8e7705c.jpg HTTP/1.1[0m" 304 -
+2025-08-26 19:33:41,884 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "GET /static/uploads/1d86240f41364ec6a83612ffff967e6b.jpg HTTP/1.1" 200 -
+2025-08-26 19:33:41,884 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/pug.jpg HTTP/1.1[0m" 304 -
+2025-08-26 19:33:41,887 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/714bbd7bdac544a988bedcf9884cabf9.jpg HTTP/1.1[0m" 304 -
+2025-08-26 19:33:41,887 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/95f6ab51deba447cb55debf76e5ed917.jpg HTTP/1.1[0m" 304 -
+2025-08-26 19:33:41,890 INFO werkzeug Thread-15 (process_request_thread) : 127.0.0.1 - - [26/Aug/2025 19:33:41] "[36mGET /static/uploads/6248dbe48c5d488b88c2aabdcd1c4a88.jpg HTTP/1.1[0m" 304 -
+2025-08-26 19:44:35,706 INFO werkzeug MainThread :  * Detected change in '/home/parisnicolas/Programacion/escuela/blog-higieneYseguridad/app.py', reloading
+2025-08-26 19:44:35,826 INFO werkzeug MainThread :  * Restarting with stat
+2025-08-26 19:44:36,284 WARNING werkzeug MainThread :  * Debugger is active!
+2025-08-26 19:44:36,286 INFO werkzeug MainThread :  * Debugger PIN: 531-671-266

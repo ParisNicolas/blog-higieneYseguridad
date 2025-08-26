@@ -9,7 +9,6 @@ import logging
 from flask_migrate import Migrate
 import uuid
 import boto3
-import openai
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -70,7 +69,7 @@ S3_SECRET_KEY = os.getenv("S3_SECRET_KEY")
 def save_image(file):
     ext = os.path.splitext(file.filename)[1]
     unique_filename = f"{uuid.uuid4().hex}{ext}"
-    if env == "development":
+    if True: #env == "development":
         # Guardar localmente
         full_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
         file.save(full_path)
@@ -92,46 +91,6 @@ def save_image(file):
         # URL pública de la imagen en S3
         return f"https://{S3_BUCKET}.s3.{S3_REGION}.amazonaws.com/{unique_filename}"
 
-
-def analizar_riesgo_titulo(titulo):
-    """
-    Usa la API de OpenAI (gpt-4o-mini) para analizar el título y devolver un puntaje de riesgo (0-5) y una justificación breve.
-    """
-    api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = api_key
-    prompt = (
-        f"Analiza el siguiente título de reporte de seguridad y devuelve:\n"
-        f"1. Un puntaje de riesgo del 0 al 5 (donde 0 es sin riesgo y 5 es riesgo máximo).\n"
-        f"2. Una justificación breve (máx 30 palabras).\n"
-        f"Título: \"{titulo}\"\n"
-        f"Formato de respuesta: Puntaje: <número>, Justificación: <texto breve>"
-    )
-    try:
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "Eres un experto en seguridad e higiene laboral."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=150,
-            temperature=0.2
-        )
-        output = response.choices[0].message.content
-        import re
-        match = re.search(r"Puntaje:\s*(\d),\s*Justificación:\s*(.*)", output)
-        if match:
-            score = int(match.group(1))
-            justificacion = match.group(2)[:200]
-        else:
-            score = 2
-            justificacion = "No se pudo analizar el riesgo automáticamente."
-    except openai.AuthenticationError:
-        score = 2
-        justificacion = "Error: API Key inválida o falta autorización para usar la API de OpenAI."
-    except Exception as e:
-        score = 2
-        justificacion = f"Error en análisis automático: {str(e)}"
-    return score, justificacion
 
 # ---------- RUTAS ----------
 @app.route("/", methods=["GET", "POST"])
@@ -178,8 +137,9 @@ def nuevo_post():
         descripcion = request.form["descripcion"]
         file = request.files["file"]
 
-        # Analizar el título para obtener puntaje y justificación
-        score, justificacion = analizar_riesgo_titulo(descripcion[:50])
+        # Ya no se analiza el título con IA
+        score = 2
+        justificacion = "Justificación no disponible."
 
         # Guardar imagen según entorno
         image_path = None
