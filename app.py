@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, render_template_string
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -202,6 +202,24 @@ def comment_post(post_id):
         new_comment = Comment(post_id=post_id, username=session["username"], text=text)
         db.session.add(new_comment)
         db.session.commit()
+    # Si es AJAX, devolver HTML actualizado
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        post = Post.query.get_or_404(post_id)
+        comments_html = render_template_string("""
+        {% for comment in post.comments %}
+            <div class="mb-1 d-flex align-items-center">
+                <strong>{{ comment.username }}:</strong> {{ comment.text }}
+                {% if is_admin or comment.username == logged_in_user %}
+                    <form method="POST" action="/delete_comment/{{ comment.id }}" class="ms-2">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar comentario">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+        """, post=post, is_admin=session.get("is_admin", False), logged_in_user=session.get("username"))
+        return jsonify({"success": True, "comments_html": comments_html})
     return redirect(url_for("index"))
 
 @app.route("/delete/<int:post_id>", methods=["POST"])
