@@ -28,6 +28,33 @@
 </nav>
 
 <div class="container mt-4">
+    <!-- Filtros por tipo de riesgo y solucionado -->
+    <form method="get" class="mb-4">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <label for="risk_type" class="form-label mb-0 fw-bold">Filtrar por tipo de riesgo:</label>
+            </div>
+            <div class="col-auto">
+                <select name="risk_type" id="risk_type" class="form-select" onchange="this.form.submit()">
+                    <option value="todos" {% if risk_filter == "todos" %}selected{% endif %}>Mostrar todos</option>
+                    {% for tipo in risk_types %}
+                        <option value="{{ tipo }}" {% if risk_filter == tipo %}selected{% endif %}>{{ tipo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% if is_admin %}
+            <div class="col-auto">
+                <label for="solucionado" class="form-label mb-0 fw-bold">Estado:</label>
+            </div>
+            <div class="col-auto">
+                <select name="solucionado" id="solucionado" class="form-select" onchange="this.form.submit()">
+                    <option value="no" {% if solucion_filter == "no" %}selected{% endif %}>Sin solucionar</option>
+                    <option value="si" {% if solucion_filter == "si" %}selected{% endif %}>Solucionados</option>
+                </select>
+            </div>
+            {% endif %}
+        </div>
+    </form>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
     {% for post in posts %}
     <div class="col">
@@ -48,6 +75,14 @@
                 <i class="bi bi-person-circle"></i> {{ post.username }}
                 <span class="text-muted"> - {{ post.created_at }}</span>
             </h6>
+            <div>
+                <span class="badge bg-info text-dark mb-2">
+                    <i class="bi bi-flag"></i> {{ post.descripcion }}
+                </span>
+                {% if post.solucionado %}
+                    <span class="badge bg-success text-white mb-2">Solucionado</span>
+                {% endif %}
+            </div>
             <img src="{{ url_for('static', filename=post.image_path) }}" class="img-fluid rounded" style="max-height: 250px; object-fit: cover;">
             <p class="mt-2">{{ post.title }}</p>
             {% if is_admin %}
@@ -64,8 +99,6 @@
                     </div>
                 </form>
             </div>
-            <p><strong>Descripción:</strong> {{ post.descripcion if post.descripcion else "..." }}</p>
-            <br>
             {% endif %}
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -79,13 +112,22 @@
                         </button>
                     </form>
                 </div>
-                {% if is_admin or post.username == logged_in_user %}
-                <form method="POST" action="/delete/{{ post.id }}" class="d-inline">
-                    <button type="submit" class="btn btn-sm btn-outline-danger ms-2">
-                        <i class="bi bi-trash"></i> Eliminar
-                    </button>
-                </form>
-                {% endif %}
+                <div>
+                    {% if is_admin and not post.solucionado %}
+                    <form method="POST" action="/marcar_solucionado/{{ post.id }}" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-success ms-2">
+                            <i class="bi bi-check-circle"></i> Solucionado
+                        </button>
+                    </form>
+                    {% endif %}
+                    {% if is_admin or post.username == logged_in_user %}
+                    <form method="POST" action="/delete/{{ post.id }}" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-danger ms-2">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
             <hr>
             <!-- Comentarios en desplegable -->

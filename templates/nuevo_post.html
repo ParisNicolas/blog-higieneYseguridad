@@ -11,6 +11,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ url_for('index') }}">Defectos Escolares</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-sm my-2 my-lg-0 ms-lg-2">Volver</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -20,8 +30,18 @@
         <div class="col-md-6">
             <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
                 <div class="mb-3">
-                    <label class="form-label">Descripción</label>
-                    <textarea name="descripcion" class="form-control" rows="3" required></textarea>
+                    <label class="form-label">Tipo de riesgo</label>
+                    <select name="risk_type" class="form-select" required>
+                        <option value="" disabled selected>Seleccione un tipo de riesgo</option>
+                        {% for tipo, desc in risk_types %}
+                            <option value="{{ tipo }}" title="{{ desc }}">{{ tipo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción breve (título)</label>
+                    <textarea name="descripcion" class="form-control" rows="2" maxlength="50" placeholder="Breve descripción del reporte" required></textarea>
                 </div>
 
                 <div class="mb-3">
