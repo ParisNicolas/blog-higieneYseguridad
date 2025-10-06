@@ -416,12 +416,12 @@ gunicorn --workers 3 --bind 0.0.0.0:8000 app:app
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 📞 Soporte
+## 👨‍🎓 Equipo de trabajo
 
-Para soporte técnico o preguntas:
-- **Desarrollador**: París Nicolás
-- **Email**: nicolasfranciscoparis@example.com
-- **Institución**: Instituto Tecnico Renault
+- **Desarrollador**: Paris Nicolas 🗼
+- **Testers**: Michel Paul y Ariza Marcos 🦖
+- **Base de Datos**: Tomas Cipriano ✈️
+
 
 ## 🔄 Versiones
 
