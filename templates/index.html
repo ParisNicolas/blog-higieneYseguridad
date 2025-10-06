@@ -11,18 +11,27 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <span class="navbar-brand">Reportes</span>
-        {% if session.get("username") %}
-            <div class="mb-3">
-                <a href="{{ url_for('nuevo_post') }}" class="btn btn-success">
-                    <i class="bi bi-plus-lg"></i> Nueva Publicación
-                </a>
+        <a class="navbar-brand" href="#">Reportes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Puedes agregar más enlaces aquí si lo deseas -->
+            </ul>
+            <div class="d-flex flex-column flex-lg-row align-items-lg-center w-100 w-lg-auto">
+                {% if session.get("username") %}
+                    <div class="mb-2 mb-lg-0 me-lg-3 text-center text-lg-start">
+                        <a href="{{ url_for('nuevo_post') }}" class="btn btn-success w-100 w-lg-auto">
+                            <i class="bi bi-plus-lg"></i> Nueva Publicación
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="d-flex flex-column flex-lg-row align-items-lg-center w-100 w-lg-auto">
+                    <span class="text-white me-lg-3 mb-2 mb-lg-0 text-center text-lg-start">Hola, {{ logged_in_user }}</span>
+                    <a href="/logout" class="btn btn-outline-light btn-sm w-100 w-lg-auto">Salir</a>
+                </div>
             </div>
-        {% endif %}
-
-        <div class="d-flex">
-            <span class="text-white me-3">Hola, {{ logged_in_user }}</span>
-            <a href="/logout" class="btn btn-outline-light btn-sm">Salir</a>
         </div>
     </div>
 </nav>
