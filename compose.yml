@@ -1,0 +1,51 @@
+services:
+  flask:
+    build: .
+    image: blog_higiene:latest
+    container_name: blog_higiene
+    restart: always
+    ports: 
+      - "5000:5000"
+    environment:
+      - SQLALCHEMY_DATABASE_URI=mysql+pymysql://appuser:securepassword@db:3306/blog_db
+    volumes:
+      - uploads:/app/static/uploads
+    networks:
+      - blog_network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8.0
+    container_name: blog_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog_db
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: securepasswordd
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - blog_network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  blog_network:
+
+volumes: 
+  db_data:
+  uploads:
+
